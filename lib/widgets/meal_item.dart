@@ -10,6 +10,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Function removeItem;
 
   MealItem({
     @required this.id,
@@ -18,52 +19,63 @@ class MealItem extends StatelessWidget {
     @required this.duration,
     @required this.complexity,
     @required this.affordability,
+    @required this.removeItem
   });
 
   String get complexityText {
-    switch(complexity)
-    {
+    switch (complexity) {
       case Complexity.Simple:
-      {
-        return 'Simple';
-      } break;
+        {
+          return 'Simple';
+        }
+        break;
       case Complexity.Challenging:
-      {
-        return 'Challenging';
-      } break;
+        {
+          return 'Challenging';
+        }
+        break;
       case Complexity.Hard:
-      {
-        return 'Hard';
-      } break;
+        {
+          return 'Hard';
+        }
+        break;
       default:
-      return 'Unknown';
+        return 'Unknown';
     }
   }
 
   String get affordabilityText {
-    switch(affordability)
-    {
+    switch (affordability) {
       case Affordability.Affordable:
-      {
-        return 'Affordable';
-      } break;
+        {
+          return 'Affordable';
+        }
+        break;
       case Affordability.Luxurious:
-      {
-        return 'Luxurious';
-      } break;
+        {
+          return 'Luxurious';
+        }
+        break;
       case Affordability.Pricey:
-      {
-        return 'Pricey';
-      } break;
+        {
+          return 'Pricey';
+        }
+        break;
       default:
-      return 'Unknown';
+        return 'Unknown';
     }
   }
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(MealDetailScreen.routeName, arguments: id);
+    Navigator.of(context)
+        .pushNamed(MealDetailScreen.routeName, arguments: id)
+        .then((result) {
+          if(result != null)
+          {
+            removeItem(result);
+          }
+        });
   }
-
 
   @override
   Widget build(BuildContext context) {
