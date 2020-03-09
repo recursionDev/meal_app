@@ -16,6 +16,7 @@ class TabsScreen extends StatefulWidget {
 
 class _TabsScreenState extends State<TabsScreen> {
   List<Map<String, Object>> _pages;
+  int _selectedPageIndex = 0;
 
   @override
   initState()
@@ -32,13 +33,13 @@ class _TabsScreenState extends State<TabsScreen> {
     super.initState();
   }
 
-  int _selectedPageIndex = 0;
 
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
